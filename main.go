@@ -18,11 +18,14 @@ func main(){
 	
 	operation := ""
 	host := "host"
+	port := "0000"
 	first := 0
 	second := 0
 	
 	fmt.Printf("Tell me the hostname or ip of the web service: ")
 	fmt.Scanf("%s", &host)
+	fmt.Printf("Tell me the port the service is listening to: ")
+	fmt.Scanf("%s", &port)
 	fmt.Printf("What would you like to do (sum,difference,product,quotient): ")
 	fmt.Scanf("%s", &operation)
 	fmt.Printf("Give first number: ")
@@ -30,7 +33,7 @@ func main(){
 	fmt.Printf("Give second number: ")
 	fmt.Scanf("%d", &second)
 	
-	url := fmt.Sprintf("http://%s/api/v1/%s?a=%d&b=%d", host , operation, first, second)
+	url := fmt.Sprintf("http://%s:%s/api/v1/%s?a=%d&b=%d", host, port , operation, first, second)
 	
 	res, _  := http.Get(url)
 	body, _ := ioutil.ReadAll(res.Body)
